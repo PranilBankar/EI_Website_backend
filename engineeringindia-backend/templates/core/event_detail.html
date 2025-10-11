@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h1>{{ event.title }}</h1>
+      {% if event.image_url %}
+        <img src="{{ event.image_url }}" class="img-fluid mb-3" alt="{{ event.title }}">
+      {% endif %}
+      <p>{{ event.description|linebreaks }}</p>
+      <p><strong>When:</strong> {{ event.start_time|date:"M j, Y H:i" }}{% if event.end_time %} - {{ event.end_time|date:"M j, Y H:i" }}{% endif %}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      {% if event.capacity %}
+        <p><strong>Seats left:</strong> {{ event.remaining_seats }}</p>
+      {% endif %}
+    </div>
+    <div class="col-md-4">
+      {% if user.is_authenticated %}
+        {% if is_registered %}
+          <div class="alert alert-success">You are registered for this event.</div>
+        {% else %}
+          <form method="post" action="{% url 'api:event-register' event.id %}">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Register</button>
+          </form>
+        {% endif %}
+      {% else %}
+        <p><a href="/accounts/login/?next={{ request.path }}">Login</a> to register for this event.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

@@ -11,8 +11,9 @@ SECRET_KEY = 'django-insecure-your-secret-key'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '*',
     'localhost',
-    '127.0.0.1',
+    '127.0.0.1',    
     'engineeringindiarbu.onrender.com'  # Update with your free domain later
 ]
 

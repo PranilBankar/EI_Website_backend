@@ -1,9 +1,9 @@
 {
   "builds": [
-    { "src": "core/wsgi.py", "use": "@vercel/python" },
+    { "src": "engineeringindia_rbu/core/wsgi.py", "use": "@vercel/python" },
     { "src": "core/urls.py", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "core/wsgi.py" }
+    { "src": "/(.*)", "dest": "engineeringindia_rbu/core/wsgi.py" }
   ]
 }
